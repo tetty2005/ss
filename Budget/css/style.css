@@ -1,0 +1,33 @@
+.name {
+	font-size: 70%;
+	color: #B1A68C;
+}
+
+ @media (min-width: 992px) {
+  	.name {
+    	width: 1000px;
+	}
+	.type {
+		width: 1000px;
+	}
+/*@media (max-width: 767px) {
+  	.name {
+    width: 100px;
+	}
+	.type {
+		width: 100px;
+	}*/
+}
+
+.start, .type {
+	margin: 10px 5px;
+	padding: 10px 5px;
+}
+
+input {
+	width: 50px;
+}
+
+#balance {
+  color: green;
+}
