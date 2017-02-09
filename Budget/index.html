@@ -17,12 +17,12 @@
 		<div class="col-md-4 col-sm-4 col-xs-6">Типы расходов</div>
 		<div class="col-md-4 col-sm-4 col-xs6">Траты (грн)</div>
 		<div class="col-md-4 col-sm-4 col-xs-12">Баланс</div>
-		<!-- <div class="col-md-2 col-sm-2 col-xs-2">График</div> -->
+		<!-- Повседневные -->
 	</section>
 	<div class="layout">
 	<section class="daily type">
 		<div class="col-md-4 col-sm-4 col-xs-6 title">Повседневные</div>
-		<div class="col-md-4 col-sm-4 col-xs-6">
+		<div class="col-md-4 col-sm-4 col-xs-6 button">
 			<input id="input_daily"></input> 
 			<button onclick="myFunction('daily')">+</button>
 
@@ -32,15 +32,13 @@
 			<progress id="progress_daily" max="2000" value="0"></progress>
 			<span id="balance_daily"></span>
 		</div>
-		<!-- <div class="col-md-2 col-sm-2 col-xs-2">
-			<button>Ii</button>
-		</div> -->
+		<!-- Бытовые -->
 	</section>
 	</div>
 	<div class="layout">
 	<section class="house type">
 		<div class="col-md-4 col-sm-4 col-xs-6 title">Бытовые</div>
-		<div class="col-md-4 col-sm-4 col-xs-6">
+		<div class="col-md-4 col-sm-4 col-xs-6 button">
 			<input id="input_house"></input>
 			<button onclick="myFunction('house')">+</button>
 
@@ -50,15 +48,13 @@
 			<progress id="progress_house" max="2500" value="0"></progress>
 			<span id="balance_house"></span>
 		</div>
-<!-- 		<div class="col-md-2 col-sm-2 col-xs-2">
-			<button>Ii</button>
-		</div> -->
+<!-- Социализация -->
 	</section>
 	</div>
 	<div class="layout">
 	<section class="social type">
 		<div class="col-md-4 col-sm-4 col-xs-6 title">Социализация</div>
-		<div class="col-md-4 col-sm-4 col-xs-6">
+		<div class="col-md-4 col-sm-4 col-xs-6 button">
 			<input id="input_social"></input>
 			<button onclick="myFunction('social')">+</button>
 		</div>
@@ -67,15 +63,13 @@
 			<progress id="progress_social" max="1000" value="0"></progress>
 			<span id="balance_social"></span>
 		</div>
-<!-- 		<div class="col-md-2 col-sm-2 col-xs-2">
-			<button>Ii</button>
-		</div> -->
+<!-- Спорт -->
 	</section>
 	</div>
 	<div class="layout">
 	<section class="sport type">
 		<div class="col-md-4 col-sm-4 col-xs-6 title">Спорт</div>
-		<div class="col-md-4 col-sm-4 col-xs-6">
+		<div class="col-md-4 col-sm-4 col-xs-6 button">
 			<input id="input_sport"></input>
 			<button onclick="myFunction('sport')">+</button>
 
@@ -85,15 +79,13 @@
 			<progress id="progress_sport" max="2000" value="0"></progress>
 			<span id="balance_sport"></span>
 		</div>
-<!-- 		<div class="col-md-2 col-sm-2 col-xs-2">
-			<button>Ii</button>
-		</div> -->
+<!-- Одежда и косметика -->
 	</section>
 	</div>
 	<div class="layout">	
 	<section class="style type">
 		<div class="col-md-4 col-sm-4 col-xs-6 title">Одежда и косметика</div>
-		<div class="col-md-4 col-sm-4 col-xs-6">
+		<div class="col-md-4 col-sm-4 col-xs-6 button">
 			<input id="input_style"></input>
 			<button onclick="myFunction('style')">+</button>
 		</div>
@@ -102,14 +94,10 @@
 			<progress id="progress_style" max="2000" value="0"></progress>
 			<span id="balance_style"></span>
 		</div>
-<!-- 		<div class="col-md-2 col-sm-2 col-xs-2">
-			<button>Ii</button>
-		</div> -->
 	</section>	
 	</div>
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/script.js"></script>
-<!-- 	<script src="script.js"></script> -->
 </body>
 </html>
