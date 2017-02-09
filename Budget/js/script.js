@@ -29,7 +29,7 @@ function calculate(wastes, wasteType){
     
     var max = document.getElementById('progress_' + wasteType).max;
     var balance = max - sum;
-    if (balance < max) {
+    if (balance > max) {
       document.getElementById('balance_' + wasteType).style.color = 'red';
       document.getElementById('balance_' + wasteType).innerHTML = balance;
     }
