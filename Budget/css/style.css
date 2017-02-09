@@ -1,3 +1,10 @@
+body {
+  background-color: #61122f;
+ }
+
+ h1 {
+ 	color: white;
+ }
 .name {
 	font-size: 70%;
 	color: #B1A68C;
@@ -8,16 +15,62 @@
 	padding: 5px 5px;
 }
 
+.layout section { 
+	position: absolute;
+}
+
+.daily {
+	border: solid;
+	background-color: white; 
+	height: 80px;
+	width: 500px;
+}
+
+.house {
+	border: solid;
+	background-color: white;
+	top: 180px;  
+	height: 80px;
+	width: 500px;
+}
+
+.social {
+	border: solid;
+	background-color: white;
+	top: 280px;  
+	height: 80px;
+	width: 500px;
+}
+
+.sport {
+	border: solid;
+	background-color: white;
+	top: 380px;  
+	height: 80px;
+	width: 500px;
+}
+
+.style {
+	border: solid;
+	background-color: white;
+	top: 480px;  
+	height: 80px;
+	width: 500px;
+}
+
 .balance {
 	margin: 0px 0px 20px 20px;
 	padding: 0px 0px 0px 0px;
 }
+
 input {
 	width: 50px;
 }
+
 #balance {
   color: green;
 }
+
 @media (min-width: 992px) {
   	.name {
     	width: 700px;
@@ -29,10 +82,11 @@ input {
 @media (max-width: 767px) {
   	h1 {
     	font-size: 16px;
+		font-weight: bold;
   	}
   	#month {
 	  	font-size: 10px;
-	  	color: gray;
+	  	color: white;
   	}
   	input {
 		width: 30px;
@@ -45,5 +99,12 @@ input {
 	progress {
 		width: 200px;
 		padding: 0px 0px 0px 0px;
+	}
+	.title {
+		font-size: 16px;
+	}
+	span {
+	  	font-size: 10px;
+	  	color: gray;		
 	}
 }
