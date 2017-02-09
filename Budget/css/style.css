@@ -1,9 +1,15 @@
 body {
-  background-color: #61122f;
+  background-color: #506372;
  }
 
  h1 {
  	color: white;
+ 	text-transform: uppercase;
+ }
+.button {
+	position: absolute;
+	left: 280px; 
+	top: 20px;
  }
 .name {
 	font-size: 70%;
@@ -17,17 +23,16 @@ body {
 
 .layout section { 
 	position: absolute;
+	border-radius: 9px;
 }
 
 .daily {
-	border: solid;
 	background-color: white; 
 	height: 80px;
 	width: 500px;
 }
 
 .house {
-	border: solid;
 	background-color: white;
 	top: 180px;  
 	height: 80px;
@@ -35,7 +40,6 @@ body {
 }
 
 .social {
-	border: solid;
 	background-color: white;
 	top: 280px;  
 	height: 80px;
@@ -43,7 +47,6 @@ body {
 }
 
 .sport {
-	border: solid;
 	background-color: white;
 	top: 380px;  
 	height: 80px;
@@ -51,7 +54,6 @@ body {
 }
 
 .style {
-	border: solid;
 	background-color: white;
 	top: 480px;  
 	height: 80px;
@@ -59,12 +61,55 @@ body {
 }
 
 .balance {
-	margin: 0px 0px 20px 20px;
+	margin: 10px 0px 20px 20px;
 	padding: 0px 0px 0px 0px;
+}
+button {
+	width: 40px;
+	height: 40px;
+ 	background: #5bc3e8;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    border: solid 1px #73C8F0;
+    cursor: pointer;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 25px;
+    background: -moz-linear-gradient(0% 100% 90deg, #2E8CE3, #5bc3e8);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5bc3e8), to(#2E8CE3));
+}
+progress {
+/*	background-color: #f3f3f3;*/
+/*border: 0;*/
+	background: #F8F1F1;
+	height: 18px;
+	width: 200px;
+	padding: 0px 0px 0px 0px;
+	color: #0063a6;
+	font-size: .6em;
+	line-height: 1.5em;
+	text-indent: .5em;
+	border-radius: 9px;
+	border: 1px solid white;
+	}
+progress::-webkit-progress-bar {
+	background: #F8F1F1;
+	border-radius: 9px;
+	border: 1px solid white;
+
+}
+progress::-webkit-progress-value {
+	background: #888888;
+	border-radius: 9px;
+	border: 1px solid white;
 }
 
 input {
-	width: 50px;
+	font-size: 20px;
+	width: 30px;
+	border: 0px;
+	border-bottom: 1px solid #888888;
 }
 
 #balance {
@@ -88,18 +133,7 @@ input {
 	  	font-size: 10px;
 	  	color: white;
   	}
-  	input {
-		width: 30px;
-		height: 30px;
-	}
-	button {
-		width: 30px;
-		height: 30px;
-	}
-	progress {
-		width: 200px;
-		padding: 0px 0px 0px 0px;
-	}
+
 	.title {
 		font-size: 16px;
 	}
