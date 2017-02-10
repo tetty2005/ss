@@ -13,87 +13,95 @@
 	<h1>Бюджет на месяц</h1>
 	<div id="month">Февраль 2017</div>
 	</section>
-	<section class="name hidden-xs">
-		<div class="col-md-4 col-sm-4 col-xs-6">Типы расходов</div>
-		<div class="col-md-4 col-sm-4 col-xs6">Траты (грн)</div>
-		<div class="col-md-4 col-sm-4 col-xs-12">Баланс</div>
-		<!-- Повседневные -->
-	</section>
+<!-- Повседневные -->
 	<div class="layout">
 	<section class="daily type">
 		<div class="col-md-4 col-sm-4 col-xs-6 title">Повседневные</div>
-		<div class="col-md-4 col-sm-4 col-xs-6 button">
-			<input id="input_daily"></input> 
-			<button onclick="myFunction('daily')">+</button>
-
-		</div>
 		<div class="col-md-4 col-sm-4 col-xs-12 balance">
 			<span id="span_daily"></span>
 			<progress id="progress_daily" max="2000" value="0"></progress>
 			<span id="balance_daily"></span>
 		</div>
-		<!-- Бытовые -->
+		<div class="col-md-4 col-sm-4 col-xs-6 button">
+			<form id="form" onsubmit="myFunction('daily')">
+				<input id="input_daily"></input>
+			</form> 
+
+		</div>
+		<button onclick="plus1('daily')">1</button>
+		<button onclick="plus10('daily')">10</button>
+<!-- Бытовые -->
 	</section>
 	</div>
 	<div class="layout">
 	<section class="house type">
 		<div class="col-md-4 col-sm-4 col-xs-6 title">Бытовые</div>
-		<div class="col-md-4 col-sm-4 col-xs-6 button">
-			<input id="input_house"></input>
-			<button onclick="myFunction('house')">+</button>
-
-		</div>
 		<div class="col-md-4 col-sm-4 col-xs-12 balance">
 			<span id="span_house"></span>
-			<progress id="progress_house" max="2500" value="0"></progress>
+			<progress id="progress_house" class="red" max="2500" value="0"></progress>
 			<span id="balance_house"></span>
 		</div>
+		<div class="col-md-4 col-sm-4 col-xs-6 button">
+			<form id="form" onsubmit="myFunction('house')">		
+				<input id="input_house"></input>
+			</form> 
+		</div>
+		<button onclick="plus1('house')">1</button>
+		<button onclick="plus10('house')">10</button>
 <!-- Социализация -->
 	</section>
 	</div>
 	<div class="layout">
 	<section class="social type">
 		<div class="col-md-4 col-sm-4 col-xs-6 title">Социализация</div>
-		<div class="col-md-4 col-sm-4 col-xs-6 button">
-			<input id="input_social"></input>
-			<button onclick="myFunction('social')">+</button>
-		</div>
 		<div class="col-md-4 col-sm-4 col-xs-12 balance">
 			<span id="span_social"></span>
 			<progress id="progress_social" max="1000" value="0"></progress>
 			<span id="balance_social"></span>
 		</div>
+		<div class="col-md-4 col-sm-4 col-xs-6 button">
+			<form id="form" onsubmit="myFunction('social')">
+				<input id="input_social"></input>
+			</form>
+		</div>
+		<button onclick="plus1('social')">1</button>
+		<button onclick="plus10('social')">10</button>
 <!-- Спорт -->
 	</section>
 	</div>
 	<div class="layout">
 	<section class="sport type">
 		<div class="col-md-4 col-sm-4 col-xs-6 title">Спорт</div>
-		<div class="col-md-4 col-sm-4 col-xs-6 button">
-			<input id="input_sport"></input>
-			<button onclick="myFunction('sport')">+</button>
-
-		</div>
 		<div class="col-md-4 col-sm-4 col-xs-12 balance">
 			<span id="span_sport"></span>
 			<progress id="progress_sport" max="2000" value="0"></progress>
 			<span id="balance_sport"></span>
 		</div>
+		<div class="col-md-4 col-sm-4 col-xs-6 button">
+			<form id="form" onsubmit="myFunction('sport')">
+				<input id="input_sport"></input>
+			</form>
+		</div>
+		<button onclick="plus1('sport')">1</button>
+		<button onclick="plus10('sport')">10</button>		
 <!-- Одежда и косметика -->
 	</section>
 	</div>
 	<div class="layout">	
 	<section class="style type">
 		<div class="col-md-4 col-sm-4 col-xs-6 title">Одежда и косметика</div>
-		<div class="col-md-4 col-sm-4 col-xs-6 button">
-			<input id="input_style"></input>
-			<button onclick="myFunction('style')">+</button>
-		</div>
 		<div class="col-md-4 col-sm-4 col-xs-12 balance">
 			<span id="span_style"></span>
 			<progress id="progress_style" max="2000" value="0"></progress>
 			<span id="balance_style"></span>
 		</div>
+		<div class="col-md-4 col-sm-4 col-xs-6 button">
+			<form id="form" onsubmit="myFunction('style')">
+				<input id="input_style"></input>
+			</form>
+		</div>
+		<button onclick="plus1('style')">1</button>
+		<button onclick="plus10('style')">10</button>	
 	</section>	
 	</div>
 	<script src="js/jquery-2.1.4.min.js"></script>
