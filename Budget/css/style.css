@@ -15,30 +15,34 @@ span {
 }
 
 button {
+	font-family: Agency FB;
 	position: relative;
 	float: right;
 	top: -50px;
 	margin-right: 5px;
 	width: 30px;
 	height: 30px;
- 	background: #5bc3e8;
+ 	background: #CCCCCC;
+ 	font-size: 16px;
     font-weight: bold;
-    color: #FFFFFF;
-    border: solid 1px #73C8F0;
+    color: #666666;
+/*    border: solid 1px #666666;*/
     cursor: pointer;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 25px;
-    background: -moz-linear-gradient(0% 100% 90deg, #2E8CE3, #5bc3e8);
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5bc3e8), to(#2E8CE3));
+/*    background: -moz-linear-gradient(0% 100% 90deg, #8e90c0, #5d68a6);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5d68a6), to(#8e90c0));*/
+}
+
+#changeMax {
+ 	background: #f2b84c;
 }
 
 progress {
-/*	background: #888888;*/
 	height: 18px;
 	width: 200px;
 	padding: 0px 0px 0px 0px;
-/*	color: #0063a6;*/
 	font-size: .6em;
 	line-height: 1.5em;
 	text-indent: .5em;
@@ -53,19 +57,43 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-	background: #888888;
+	background: #beb840;
 	border-radius: 9px;
 	border: 1px solid white;
 }
 
-span#span_house > progress::-webkit-progress-value {
-	background: red;
+progress.styled1::-webkit-progress-value {
+	background: #beb840;
+	border-radius: 9px;
+	border: 1px solid white;
+}
+
+progress.styled2::-webkit-progress-value {
+	background: #f2cb66;
+	border-radius: 9px;
+	border: 1px solid white;
+}
+
+progress.styled3::-webkit-progress-value {
+	background: #eda23d;
+	border-radius: 9px;
+	border: 1px solid white;
+}
+
+progress.styled4::-webkit-progress-value {
+	background: #db5e30;
+	border-radius: 9px;
+	border: 1px solid white;
+}
+
+progress.styled5::-webkit-progress-value {
+	background: #a82221;
 	border-radius: 9px;
 	border: 1px solid white;
 }
 
 input {
-	font-size: 20px;
+	font-size: 16px;
 	border: 1px;
 	border-bottom: 1px solid #888888;
 	outline: none; 
@@ -79,11 +107,6 @@ form {
 	position: absolute;
 }
 
-span {
-  	font-size: 10px;
-  	color: gray;		
-}
-
 .button {
 	position: absolute;
 	left: 270px; 
@@ -94,9 +117,15 @@ span {
 	color: #B1A68C;
 }
 
-.start, .type {
-	margin: 5px 5px;
-	padding: 5px 5px;
+.start {
+	margin: 0px 5px 0px 10px;
+	padding: 0px 5px 0px 10px;
+}
+
+.type {
+	margin: 5px 5px 0px 0px;
+	padding: 5px 5px 0px 0px;
+	font-size: 20px;
 }
 
 .layout section { 
@@ -106,39 +135,24 @@ span {
 	margin-left: 20px;
 }
 
-.daily {
+.daily, .house, .social, .sport, .style {
 	background-color: white; 
 	height: 80px;
-	width: 400px;
-}
-
-.house {
-	background-color: white;
-	height: 80px;
-	width: 400px;
-}
-
-.social {
-	background-color: white;
-	height: 80px;
-	width: 400px;
-}
-
-.sport {
-	background-color: white;
-	height: 80px;
-	width: 400px;
-}
-
-.style {
-	background-color: white;
-	height: 80px;
-	width: 400px;
+	width: 450px;
 }
 
 .balance {
 	margin: 10px 0px 20px 20px;
 	padding: 0px 0px 0px 0px;
+}
+
+#title_daily, #title_house, #title_social, #title_sport, #title_style {
+	font-size: 18px;
+	color: black;
+}
+
+.max {
+	font-size: 12px;
 }
 
 #balance {
@@ -150,10 +164,6 @@ span {
 	color: white;
 }
 
-.title {
-	font-size: 16px;
-}
-
-@media (max-width: 767px) {
+@media (min-width: 767px) {
 
 }
