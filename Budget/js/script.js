@@ -86,7 +86,4 @@ function setMax(wasteType, max){
 	maxes[wasteType] = max; 
 	document.getElementById('progress_' + wasteType).max = max;
 	document.getElementById('max_' + wasteType).innerHTML = max;
-	// console.log(max);
 }
-
-console.log(wastes);
