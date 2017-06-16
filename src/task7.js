@@ -1,7 +1,10 @@
 function task7(context){
-	if (context !== undefined && typeof context === 'object') {
+
+	if (typeof context === 'object') {
+
 		var arrayFibo = [];
 		var f = [0, 1];
+
 		if (typeof context.min === 'number' && typeof context.max === 'number') {
 			while (f[f.length - 1] <= context.max) {
 				f.push(f[f.length - 1] + f[f.length - 2]);
@@ -22,12 +25,14 @@ function task7(context){
 			}
 
 		} else {
+
 			return {status: 'failed', reason: 'Enter an object with properties min and max or length with a number'};
 		}
 
 		return arrayFibo;
 
 	} else {
+
 		return  {status: 'failed', reason: 'Enter an object with properties min and max or length with a number'};
 	}
 }
