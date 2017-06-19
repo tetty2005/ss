@@ -1,38 +1,40 @@
-function task3(arr){
+function task3 (arrayTriangles) {
+    if (typeof arrayTriangles !== 'object') {
+        return  {status: 'failed', reason: 'Enter an array with triangles'};
+    } else if (typeof arrayTriangles[0] !== 'object' || typeof arrayTriangles[1] !== 'object') {
+        return  {status: 'failed', reason: 'Enter an array with two or more triangles'};
+    } else {
+        
+        let getSquare = function (triangle) {
+            let triangleSides = [];
 
-	if (typeof arr !== 'object') {
-		
-		return  {status: 'failed', reason: 'Enter an array with triangles'};
+            for (let prop in triangle) {
+                triangleSides.push(triangle[prop]);
+            }
 
-	} else if (typeof arr[0] !== 'object' || typeof arr[1] !== 'object') {
+            let p = (triangleSides[1] + triangleSides[2] + triangleSides[3])/2;
+            let square = Math.sqrt(p*(p - triangleSides[1])*(p - triangleSides[2])*(p - triangleSides[3]));
 
-		return  {status: 'failed', reason: 'Enter an array with two or more triangles'};
+            return square;
+        };
 
-	} else {
+        let getNames = function(triangle){
+            return triangle.vertices;
+        };
 
-		var trianglesAreas = arr.map(function(triangle) {
-		var triangleSides = [];
+        let arranging = function (a,b) {
+            return b - a;
+        };
 
-		for (var prop in triangle) {
-			triangleSides.push(triangle[prop]);
-		}
+        let squares = arrayTriangles.map(getSquare);    // создаем массив площадей
+        let names = arrayTriangles.map(getNames);       // и массив названий треугольников
+        let squaresArranging = squares.slice().sort(arranging); // сортируем площади в новый массив
+        let namesArranging = [];                                // создаем искомый массив названий треугольников
 
-		var p = (triangleSides[1] + triangleSides[2] + triangleSides[3])/2;
-		var s = Math.sqrt(p*(p - triangleSides[1])*(p - triangleSides[2])*(p - triangleSides[3]));
-		return s;
-		});
-
-		var trianglesNames = arr.map(function(triangle){
-			return triangle.vertices;
-		});
-
-		var arrangingAreas = trianglesAreas.slice().sort(function(a,b){return b - a});
-		var arrangingNames = [];
-
-		for (var i = 0; i < arrangingAreas.length; i++){
-			arrangingNames.push(trianglesNames[trianglesAreas.indexOf(arrangingAreas[i])]);
-		}
-		
-		return arrangingNames;
-	}
+        for (let i = 0; i < squaresArranging.length; i++){                      // и наполняем его 
+            namesArranging.push(names[squares.indexOf(squaresArranging[i])]);   // согласно порядку площадей
+        }
+        
+        return namesArranging;
+    }
 }
