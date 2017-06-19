@@ -1,4 +1,4 @@
-function task1(boardX, boardY, symbol) {
+function task1 (boardX, boardY, symbol) {
     if (typeof boardX !== 'number' || typeof boardY !== 'number' || 
         typeof symbol !== 'string'){
 
