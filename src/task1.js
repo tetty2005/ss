@@ -11,20 +11,20 @@ function task1(boardX, boardY, symbol) {
             space = ' ',
             board = '';
 
-        for (let i = 0; i < boardX; i++) {
+        for (let i = 0; i < boardX; i++) {          // рисуем первую строку
             line1 += symbol + space;
         }
 
-        for (let i = 0; i < boardX-1; i++) {
+        for (let i = 0; i < boardX-1; i++) {        // рисуем вторую строку
             line2 += space + symbol;
         }           
 
-        for (let i = 1; i < boardY/2; i++) {
-            board +=  line1 + enter + line2 + enter;
+        for (let i = 1; i < boardY/2; i++) {        // рисуем доску,
+            board +=  line1 + enter + line2 + enter;// чередуя первую и вторую строки
         }
 
-        if (boardY % 2 != 0) {
-            board +=  line1 + enter;
+        if (boardY % 2 != 0) {          // если высота доски равна нечетному количеству строк,
+            board +=  line1 + enter;    // то добавляем еще одну строку
         }
 
         return board;
