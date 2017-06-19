@@ -1,32 +1,32 @@
-function task1(boardX, boardY, symbol){
-	
-	if (typeof boardX === 'number' && typeof boardY === 'number' && typeof symbol === 'string'){
-		var enter = '\n',
-			line1 = '',
-			line2 = '',
-			board = '';
+function task1(boardX, boardY, symbol) {
+    if (typeof boardX !== 'number' || typeof boardY !== 'number' || 
+        typeof symbol !== 'string'){
 
-		for (var n = 0; n < boardX; n++) {
-			line1 += symbol + ' ';
-		}
+        return  {status: 'failed', reason: 'Enter two numbers and a symbol as a string'};
+        
+    } else {
+        let line1 = '',
+            line2 = '',
+            enter = '\n',
+            space = ' ',
+            board = '';
 
-		for (var n = 0; n < boardX-1; n++) {
-			line2 += ' ' + symbol;
-		}			
+        for (let i = 0; i < boardX; i++) {
+            line1 += symbol + space;
+        }
 
-		for (var i = 1; i < boardY/2; i++) {
-			board +=  line1 + enter + line2 + enter;
-		}
+        for (let i = 0; i < boardX-1; i++) {
+            line2 += space + symbol;
+        }           
 
-		if (boardY % 2 != 0) {
-			board +=  line1 + enter;
-		}
+        for (let i = 1; i < boardY/2; i++) {
+            board +=  line1 + enter + line2 + enter;
+        }
 
-		return board;
+        if (boardY % 2 != 0) {
+            board +=  line1 + enter;
+        }
 
-	} else {
-
-		return  {status: 'failed', reason: 'Enter two numbers and a symbol as a string'};
-
-	}
+        return board;
+    }
 }
