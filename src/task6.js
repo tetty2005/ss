@@ -1,26 +1,20 @@
-function task6(n, m){
+function task6 (rowLength, minSquare) {
+    if (typeof rowLength !== 'number' || typeof minSquare !== 'number') {
+        return {status: 'failed', reason: 'Enter two numbers'};
+    } else {    
+        let numbers = [];                                   // создаем искомый ряд чисел
 
-	if (typeof n === 'number' && typeof m === 'number') {
-		
-		var numbers = [];
+        next:
+        for (let i = 1; numbers.length < rowLength; i++) {  // пока ряд не станет нужной длины
+            for (let j = 2; j < i; j++) {                   // перебираем все числа,
+                if (i % j == 0) continue next;              // пропуская ненатуральные
+            }
 
-		next:
-		for (var i = 1; numbers.length < n; i++) {
+            if (i*i > minSquare) {          // если квадрат числа больше минимального квадрата,
+                numbers.push(i);            // добавляем число в массив
+            }
+        }
 
-			for (var j = 2; j < i; j++) {
-	      		if (i % j == 0) continue next;
-	    	}
-
-	    	if (i*i > m) {
-	    		numbers.push(i);
-	    	}
-	  	}
-
-		return numbers.join(',');
-
-	} else {
-
-		return {status: 'failed', reason: 'Enter two numbers'};
-	}
-
+        return numbers.join(',');           // выводим ряд через запятую в виде строки
+    }
 }
