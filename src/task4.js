@@ -1,55 +1,41 @@
-function checkPalindrom(str){
+function task4 (number) {
+    if (typeof number === 'number') {
+        // если число подходит, преобразуем его в строку для проверки 
+        // на наличие палидрма, а результат проверки преобразуем в число
+        if (number > 10){
+            let str = String(number);
+            let result = Number(checkPalindrom(str));
+            
+            return result;
 
-	var strReverse = str.split('').reverse().join('');
+        } else {
+            return  0;
+        }
+    }
+    return {status: 'failed', reason: 'Enter a number'};
+}
 
-    if (strReverse == str) {
+function checkPalindrom (str) {
+    let strReverse = str.split('').reverse().join('');
 
-    	return str;
-
+    if (strReverse == str) {        // если строка является палиндромом, 
+        return str;                 // возвращаем ее
     } else {
-
-     	return cutString(str);
+        return cutString(str);      // если нет, обрезаем
     }
 }
 
-function cutString(str){
+function cutString (str) {
+    if (str.length > 1) {        // до тех пор, пока она будет больше 1 символа
+        let newStr1 = checkPalindrom(str.split('').slice(0,length-1).join(''));
+        let newStr2 = checkPalindrom(str.split('').slice(1).join(''));
 
-	if (str.length > 1) {
-		
-		var newStr1 = checkPalindrom(str.split('').slice(0,length-1).join(''));
-		var newStr2 = checkPalindrom(str.split('').slice(1).join(''));
-
-		if (+newStr1 > +newStr2) {
-
-			return newStr1;
-
-		} else {
-
-			return newStr2;
-		}
-
-	} else {
-
-		return 0;
-	}
-}
-	
-function task4(number){
-
-	if (typeof number === 'number') {
-
-		if (number > 10){
-
-			var str = ''+ number;
-			var result = +checkPalindrom(str);
-
-			return result;	
-
-		} else {
-
-			return  0;
-		}
-	}
-
-	return {status: 'failed', reason: 'Enter a number'};
+        if (Number(newStr1) > Number(newStr2)) {
+            return newStr1;
+        } else {
+            return newStr2;
+        }
+    } else {
+        return 0;
+    }
 }
