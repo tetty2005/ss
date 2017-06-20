@@ -1,75 +1,76 @@
-function task5(context){
-	if (context === undefined || context.min === undefined || context.max === undefined) {
-		
-		return {status: 'failed', reason: 'Enter an object with properties min and max'};
+function task5 (context) {
+    if (context === undefined || context.min === undefined || context.max === undefined) {       
+        return {status: 'failed', reason: 'Enter an object with properties min and max'};
 
-	} else if (typeof context.min !== 'string' || typeof context.max !== 'string') {
+    } else if (typeof context.min !== 'string' || typeof context.max !== 'string') {
+        return {status: 'failed', reason: 'Properties min and max should be a string'};
 
-		return {status: 'failed', reason: 'Properties min and max should be a string'};
+    } else if (context.min.length < 6 || context.max.length < 6) {
+        return {status: 'failed', reason: 'Properties min and max should be with 6 numbers'};
 
-	} else if (context.min.length < 6 || context.max.length < 6) {
+    } else {
+        let result = {};
+        result.luckyTickets1 = method1(context.min, context.max);
+        result.luckyTickets2 = method2(context.min, context.max);
+        result.winner = (result.luckyTickets1 > result.luckyTickets2) ? 
+        'method1' : (result.luckyTickets2 > result.luckyTickets1) ?
+        'method2' : 'Both methods bring the same amount of lucky tickets';
 
-		return {status: 'failed', reason: 'Properties min and max should be with 6 numbers'};
-
-	} else {
-
-		var result = {};
-		result.sum1 = method1(context.min, context.max);
-		result.sum2 = method2(context.min, context.max);
-		result.winner = (result.sum1 > result.sum2) ? 'method1' : (result.sum2 > result.sum1) ? 'method2' : 'Both methods bring the same number of lucky tickets.';
-
-		return result;
-	}
+        return result;
+    }
 }
 
-function method1(min, max){
-	var sum1 = 0;
-	for (var i = +min; i <= +max; i++) {
-		var str = ''+i;
-		var a = str.split('');
+// Первый метод считает количество билетов, где сумма первых трёх цифр равна сумме последних трёх
+function method1 (min, max) {                           
+    let luckyTickets = 0;
 
-		while (a.length < 6) {
-			a.unshift(0);
-		}
+    for (let i = Number(min); i <= Number(max); i++) {  // каждый допустимый номер билета
+        let ticketNumber = String(i).split('');         // преобразуем в массив,
 
-		for (var j = 0; j < 6; j++) {
-			a[j] = +a[j];
-		}
+        for (let j = 0; j < ticketNumber.length; j++) { // а каждый элемент массива - в число
+            ticketNumber[j] = Number(ticketNumber[j]);  // для последующего расчета сумм
+        }
 
-		var s1 = a[0] + a[1] + a[2];
-		var s2 = a[3] + a[4] + a[5];
+        while (ticketNumber.length < 6) {               // делаем массив длиной в 6 символов,
+            ticketNumber.unshift(0);                    // добавляя в его начало нули, если он меньше
+        }
 
-		if (s1 === s2) {
-			sum1++;
-		}
-	}
-	return sum1;
+        let sum1 = ticketNumber[0] + ticketNumber[1] + ticketNumber[2];
+        let sum2 = ticketNumber[3] + ticketNumber[4] + ticketNumber[5];
+
+        if (sum1 === sum2) {
+            luckyTickets++;
+        }
+    }
+
+    return luckyTickets;
 }
 
-function method2(min, max){
-	var sum2 = 0;
+// Второй метод считает количество билетов, где сумма чётных цифр билета равна сумме нечётных
+function method2 (min, max) {
+    let luckyTickets = 0;
 
-	for (var i = +min; i <= +max; i++) {
-		var str = ''+i;
-		var a = str.split('');
-		var sEven = 0;
-		var sOdd = 0;
+    for (let i = Number(min); i <= Number(max); i++) {
+        let ticketNumber = String(i).split('');
+        let sumEven = 0;        // для каждого билета обнуляем сумму четных
+        let sumOdd = 0;         // и сумму нечетных цифр 
 
-		for (var j = 0; j < a.length; j++){
-			a[j] = +a[j];
-		}
+        for (let j = 0; j < ticketNumber.length; j++) {
+            ticketNumber[j] = Number(ticketNumber[j]);
+        }
 
-		for (var l = 0; l < a.length; l++) {
-			if (a[l] % 2 === 0) {
-				sEven += a[l];
-			} else {
-				sOdd += a[l];
-			}
-		}
+        for (let k = 0; k < ticketNumber.length; k++) { // перебирая массив цифр билета,
+            if (ticketNumber[k] % 2 === 0) {
+                sumEven += ticketNumber[k];             // суммируем четные
+            } else {
+                sumOdd += ticketNumber[k];              // и нечетные цифры
+            }
+        }
 
-		if (sEven === sOdd) {
-			sum2++;
-		}
-	}
-	return sum2;
+        if (sumEven === sumOdd) {
+            luckyTickets++;
+        }
+    }
+
+    return luckyTickets;
 }
