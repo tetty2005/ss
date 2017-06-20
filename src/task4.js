@@ -16,9 +16,9 @@ function task4 (number) {
             let strReverse = str.split('').reverse().join('');
 
             if (strReverse === str) {        // Если строка является палиндромом, 
-                return str;                  // возвращаем ее.
+                return str;                  // возвращаем ее,
             } else {
-                return cutString(str);       // Если нет, обрезаем ее
+                return cutString(str);       // в противном случае обрезаем ее.
             }
         }
 
