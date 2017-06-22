@@ -1,38 +1,48 @@
+'use strict'
+
 function task5 (context) {
-    if (context === undefined || context.min === undefined || context.max === undefined) {       
-        return {status: 'failed', reason: 'Enter an object with properties min and max'};
+    let result;
+    let error = preValidate(context);
 
-    } else if (typeof context.min !== 'string' || typeof context.max !== 'string') {
-        return {status: 'failed', reason: 'Properties min and max should be a string'};
-
-    } else if (context.min.length < 6 || context.max.length < 6) {
-        return {status: 'failed', reason: 'Properties min and max should be with 6 numbers'};
-
+    if (error === '') {
+        result = setLuckyTickets(context);
     } else {
-        let result = {};
-        result.luckyTickets1 = method1(context.min, context.max);
-        result.luckyTickets2 = method2(context.min, context.max);
-        result.winner = (result.luckyTickets1 > result.luckyTickets2) ? 
-        'method1' : (result.luckyTickets2 > result.luckyTickets1) ?
-        'method2' : 'Both methods bring the same amount of lucky tickets';
-
-        return result;
+        result = {status: 'failed', reason: error};
     }
+
+    return result;
 }
 
-// Первый метод считает количество билетов, где сумма первых трёх цифр равна сумме последних трёх
+function setLuckyTickets (context) {
+    let result = {};
+    result.luckyTickets1 = method1(context.min, context.max);
+    result.luckyTickets2 = method2(context.min, context.max);
+
+    if (result.luckyTickets1 > result.luckyTickets2) {
+        result.winner = 'method1';
+    } else if (result.luckyTickets2 > result.luckyTickets1) {
+        result.winner = 'method2';
+    } else {
+        result.winner = 'Both methods bring the same amount of lucky tickets';
+    }
+
+    return result;
+}
+
+// The first method counts the number of tickets 
+// where the sum of the first three digits is the sum of the last three ones
 function method1 (min, max) {                           
     let luckyTickets = 0;
 
-    for (let i = Number(min); i <= Number(max); i++) {  // каждый допустимый номер билета
-        let ticketNumber = String(i).split('');         // преобразуем в массив,
+    for (let i = Number(min); i <= Number(max); i++) {
+        let ticketNumber = String(i).split('');
 
-        for (let j = 0; j < ticketNumber.length; j++) { // а каждый элемент массива - в число
-            ticketNumber[j] = Number(ticketNumber[j]);  // для последующего расчета сумм
+        for (let j = 0; j < ticketNumber.length; j++) {
+            ticketNumber[j] = Number(ticketNumber[j]);
         }
 
-        while (ticketNumber.length < 6) {               // делаем массив длиной в 6 символов,
-            ticketNumber.unshift(0);                    // добавляя в его начало нули, если он меньше
+        while (ticketNumber.length < 6) {
+            ticketNumber.unshift(0);
         }
 
         let sum1 = ticketNumber[0] + ticketNumber[1] + ticketNumber[2];
@@ -46,24 +56,25 @@ function method1 (min, max) {
     return luckyTickets;
 }
 
-// Второй метод считает количество билетов, где сумма чётных цифр билета равна сумме нечётных
+// The second method counts the number of tickets 
+// where the sum of even numbers of the ticket is equal to the sum of odd
 function method2 (min, max) {
     let luckyTickets = 0;
 
     for (let i = Number(min); i <= Number(max); i++) {
         let ticketNumber = String(i).split('');
-        let sumEven = 0;        // для каждого билета обнуляем сумму четных
-        let sumOdd = 0;         // и сумму нечетных цифр 
+        let sumEven = 0;
+        let sumOdd = 0;
 
         for (let j = 0; j < ticketNumber.length; j++) {
             ticketNumber[j] = Number(ticketNumber[j]);
         }
 
-        for (let k = 0; k < ticketNumber.length; k++) { // перебирая массив цифр билета,
+        for (let k = 0; k < ticketNumber.length; k++) {
             if (ticketNumber[k] % 2 === 0) {
-                sumEven += ticketNumber[k];             // суммируем четные
+                sumEven += ticketNumber[k];
             } else {
-                sumOdd += ticketNumber[k];              // и нечетные цифры
+                sumOdd += ticketNumber[k];
             }
         }
 
@@ -73,4 +84,19 @@ function method2 (min, max) {
     }
 
     return luckyTickets;
+}
+
+function preValidate (context) {
+    let error = '';
+
+    if (!context || !context.min || !context.max) { 
+        error = 'Enter an object with properties min and max';
+    } else if (typeof context.min !== 'string' || 
+               typeof context.max !== 'string') {
+        error = 'Properties min and max should be a string';
+    } else if (context.min.length < 6 || context.max.length < 6) {
+        error = 'Properties min and max should be with 6 numbers';
+    }
+
+    return error;
 }
