@@ -13,16 +13,6 @@ function task7 (context) {
     return result;
 }
 
-function preValidate (context) {
-    let error = '';
-
-    if (typeof context !== 'object') {
-        error = 'Enter an object with properties min and max or length with a number';
-    } 
-
-    return error;
-}
-
 function getArrayFibo (context) {
 
     let fiboMax = [0, 1];
@@ -57,4 +47,14 @@ function getArrayFibo (context) {
         } 
 
         return fiboPart;
+}
+
+function preValidate (context) {
+    let error = '';
+
+    if (typeof context !== 'object') {
+        error = 'Enter an object with properties min and max or length with a number';
+    } 
+
+    return error;
 }
