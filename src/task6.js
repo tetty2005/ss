@@ -1,20 +1,42 @@
+'use strict'
+
 function task6 (rowLength, minSquare) {
-    if (typeof rowLength !== 'number' || typeof minSquare !== 'number') {
-        return {status: 'failed', reason: 'Enter two numbers'};
-    } else {    
-        let numbers = [];                                   // создаем искомый ряд чисел
+    let result, error;
+    error = validate(rowLength, minSquare);
+
+    if (!error) {
+        result = getNaturalNumbers(rowLength, minSquare);
+    } else {
+        result = {status: 'failed', reason: error};
+    }
+
+    return result;
+}
+
+function getNaturalNumbers (rowLength, minSquare) {    
+        let numbers = [];
 
         next:
-        for (let i = 1; numbers.length < rowLength; i++) {  // пока ряд не станет нужной длины
-            for (let j = 2; j < i; j++) {                   // перебираем все числа,
-                if (i % j == 0) continue next;              // пропуская ненатуральные
+        for (let i = 1; numbers.length < rowLength; i++) {
+            for (let j = 2; j < i; j++) {
+                if (i % j == 0) continue next;
             }
 
-            if (i*i > minSquare) {          // если квадрат числа больше минимального квадрата,
-                numbers.push(i);            // добавляем число в массив
+            if (i*i > minSquare) {
+                numbers.push(i);
             }
         }
 
-        return numbers.join(',');           // выводим ряд через запятую в виде строки
+        return numbers.join(',');
+}
+
+function validate (rowLength, minSquare) {
+    let error = '';
+
+    if (typeof rowLength !== 'number' ||
+        typeof minSquare !== 'number') {
+        error = 'Enter two numbers';
     }
+
+    return error;
 }
