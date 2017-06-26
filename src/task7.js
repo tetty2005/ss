@@ -1,41 +1,60 @@
+'use strict'
+
 function task7 (context) {
-    if (typeof context !== 'object') {
-        return  {status: 'failed', reason: 'Enter an object with properties min and max or length with a number'};
+        let result;
+    let error = preValidate(context);
+
+    if (!error) {
+        result = getArrayFibo(context);
     } else {
-        let fiboMax = [0, 1];  // создаем массив для чисел Фибоначчи, откуда будем выбирать
-        let fiboPart = [];     // массив искомых чисел
+        result = {status: 'failed', reason: error};
+    }
 
-        // 1. Если даны минимальное и максимальное значения:
-        if (typeof context.min === 'number' && typeof context.max === 'number' && 
-            context.length === undefined) {
+    return result;
+}
 
-            while (fiboMax[fiboMax.length - 1] <= context.max) { // пока ряд не достинет максимального количества чисел,
-                fiboMax.push(fiboMax[fiboMax.length - 1] + fiboMax[fiboMax.length - 2]); // наполняем его числами Фибоначчи,
+function preValidate (context) {
+    let error = '';
 
-                if (fiboMax[fiboMax.length - 1] >= context.min){  // и начиная с заданного минимального значения,
-                    fiboPart.push(fiboMax[fiboMax.length - 1]);   // пополняем массив искомых чисел
-                }
+    if (typeof context !== 'object') {
+        error = 'Enter an object with properties min and max or length with a number';
+    } 
+
+    return error;
+}
+
+function getArrayFibo (context) {
+
+    let fiboMax = [0, 1];
+    let fiboPart = [];
+
+    // 1. Если даны минимальное и максимальное значения:
+    if (typeof context.min === 'number' && typeof context.max === 'number' && 
+        context.length === undefined) {
+
+        while (fiboMax[fiboMax.length - 1] <= context.max) {
+            fiboMax.push(fiboMax[fiboMax.length - 1] + fiboMax[fiboMax.length - 2]);
+
+            if (fiboMax[fiboMax.length - 1] >= context.min) {
+                fiboPart.push(fiboMax[fiboMax.length - 1]);
             }
-
-        // 2. Если дана длина чисел:
-        } else if (typeof context.length === 'number' && 
-                   context.min === undefined && context.max === undefined) {
-
-                    let numberFibo = '0';      // создаем переменную с числом Фибоначчи для дальнейшего расчета длины числа
-
-                    for (let i = 2; numberFibo.length <= context.length; i++) { // Пока массив не превысит заданной длины
-                        fiboMax.push(fiboMax[i - 1] + fiboMax[i - 2]);          // наполняем его числами Фибоначчи,
-                        numberFibo = String(fiboMax[i]);                        // преобразуя каждое число в строку
-                                                                                // для сравнения его длины с заданной.
-                        if (numberFibo.length === context.length){              // Если длина соответствует,
-                            fiboPart.push(fiboMax[i]);                          // формируем искомый массив.
-                        }
-                    }
-
-        } else {
-            return {status: 'failed', reason: 'Enter an object with properties min and max or length with a number'};
         }
 
+    // 2. Если дана длина чисел:
+    } else if (typeof context.length === 'number' && 
+               context.min === undefined && context.max === undefined) {
+
+                let numberFibo = '0';
+
+                for (let i = 2; numberFibo.length <= context.length; i++) {
+                    fiboMax.push(fiboMax[i - 1] + fiboMax[i - 2]); 
+                    numberFibo = String(fiboMax[i]);
+
+                    if (numberFibo.length === context.length) {
+                        fiboPart.push(fiboMax[i]);
+                    }
+                }
+        } 
+
         return fiboPart;
-    }
 }
