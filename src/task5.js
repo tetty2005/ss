@@ -1,10 +1,10 @@
 'use strict'
 
 function task5 (context) {
-    let result;
-    let error = preValidate(context);
+    let result, error;
+    error = preValid(context);
 
-    if (error === '') {
+    if (!error) {
         result = setLuckyTickets(context);
     } else {
         result = {status: 'failed', reason: error};
@@ -86,7 +86,7 @@ function method2 (min, max) {
     return luckyTickets;
 }
 
-function preValidate (context) {
+function preValid (context) {
     let error = '';
 
     if (!context || !context.min || !context.max) { 
