@@ -64,13 +64,13 @@ function init() {
         mode = 'dateUA';
     }
 
-
     function switchClockCalendar (e) {
         if (mode === 'dateEU' || mode === 'dateUA') {
             setTimeShort();
         } else {
             setCalendarEU();
         }
+        
         e.preventDefault();
     }
 
