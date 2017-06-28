@@ -1,88 +1,118 @@
 'use strict'
 
 document.addEventListener('DOMContentLoaded', init);
-setInterval(init, 1000);
 
 let mode = 'timeShort';
 
-function init() {
-    let div = document.querySelector('.clock-calendar'),
-        currentTime = new Date(),
-        hh = currentTime.getHours(),
-        mm = currentTime.getMinutes(),
-        ss = currentTime.getSeconds(),
-        day = currentTime.getDate(),
-        month = currentTime.getMonth() + 1,
-        year = currentTime.getFullYear();
+function init () {
+	let div = document.querySelector('.clock-calendar');
+
+	div.addEventListener('click', switchFormats);
+	div.addEventListener('contextmenu', switchClockCalendar, false);
+	div.addEventListener('mouseover', () => div.classList.add('blue'));
+	div.addEventListener('mouseout', () => div.classList.remove('blue'));
+
+	setInterval(render, 1000);
+	
+	function render () {
+		div.innerHTML = getClockCalendar ();
+	}
+
+	function getClockCalendar () {
+		let result;
         
-    setClockCalendar();
+		if (mode === 'dateEU') {
+	            result = setCalendarEU();
+	        } else if (mode === 'dateUA') {
+	            result = setCalendarUA();
+	        } else if (mode === 'timeFull') {
+	            result = setTimeFull();
+	        } else if (mode === 'timeShort') {
+	            result = setTimeShort();
+	        }
 
-    div.addEventListener('click', switchFormats);
-    div.addEventListener('contextmenu', switchClockCalendar, false);
-    div.addEventListener('mouseover', () => div.classList.add('blue'));
-    div.addEventListener('mouseout', () => div.classList.remove('blue'));
-
-    function setClockCalendar () {
-        if (mode === 'dateEU') {
-            setCalendarEU();
-        } else if (mode === 'dateUA') {
-            setCalendarUA();
-        } else if (mode === 'timeFull') {
-            setTimeFull();
-        } else if (mode === 'timeShort') {
-            setTimeShort();
-        }
-    }
+	    return result;
+	}
 
     function setTimeShort () {
-        console.log(String(hh).length);
-        hh = (String(hh).length < 2) ? '0'+ hh : hh;
-        mm = (String(mm).length < 2) ? '0'+ mm : mm;
-        div.innerHTML = `${hh}:${mm}`;
-        mode = 'timeShort';
+    	let result;
+        
+    	result = new Date().toLocaleTimeString('en-US', {
+			hour12: false,
+			hour: "numeric",
+			minute: "numeric"
+		});
+		mode = 'timeShort';
+
+        return result;
     }
 
     function setTimeFull () {
-        hh = ((hh).length < 2) ? '0'+ hh : hh;
-        mm = ((mm).length < 2) ? '0'+ mm : mm;
-        ss = ((ss).length < 2) ? '0'+ ss : ss;
-        div.innerHTML = `${hh}:${mm}:${ss}`;
-        mode = 'timeFull';
+        let result;
+        
+        result = new Date().toLocaleTimeString('en-US', {
+			hour12: false,
+			hour: "numeric",
+			minute: "numeric",
+			second: "numeric"
+		});
+		mode = 'timeFull';
+        
+		return result;
     }
 
     function setCalendarEU () {
-        month = (String(month).length < 2) ? '0'+ month : month;
-        day = (String(day).length < 2) ? '0'+ day : day;
-        div.innerHTML = `${month}/${day}/${year}`;
+    	let result,
+	    	currentTime = new Date(),
+	        day = currentTime.getDate(),
+	        month = currentTime.getMonth() + 1,
+	        year = currentTime.getFullYear();
+
+        result = `${month}/${day}/${year}`;
         mode = 'dateEU';
+        
+        return result;
     }
 
     function setCalendarUA () {
-        month = (String(month).length < 2) ? '0'+ month : month;
-        day = (String(day).length < 2) ? '0'+ day : day;
-        div.innerHTML = `${day}.${month}.${year}`;
+    	let result,
+	    	currentTime = new Date(),
+	        day = currentTime.getDate(),
+	        month = currentTime.getMonth() + 1,
+	        year = currentTime.getFullYear();
+
+        result = `${day}.${month}.${year}`;
         mode = 'dateUA';
+        
+        return result;
     }
 
     function switchClockCalendar (e) {
-        if (mode === 'dateEU' || mode === 'dateUA') {
-            setTimeShort();
-        } else {
-            setCalendarEU();
-        }
+    	let result;
         
+        if (mode === 'dateEU' || mode === 'dateUA') {
+            result = setTimeShort();
+        } else {
+            result = setCalendarEU();
+        }
         e.preventDefault();
+
+        return result;
     }
 
     function switchFormats () {
+    	let result;
+        
         if (mode === 'dateEU') {
-            setCalendarUA();
+            result = setCalendarUA();
         } else if (mode === 'dateUA') {
-            setCalendarEU();
+            result = setCalendarEU();
         } else if (mode === 'timeFull') {
-            setTimeShort();
+            result = setTimeShort();
         } else if (mode === 'timeShort') {
-            setTimeFull();
+            result = setTimeFull();
         }
+
+        return result;
     }
 }
