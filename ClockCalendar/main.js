@@ -15,7 +15,7 @@ function init () {
 	setInterval(render, 1000);
 	
 	function render () {
-		div.innerHTML = getClockCalendar ();
+		div.innerHTML = getClockCalendar();
 	}
 
 	function getClockCalendar () {
