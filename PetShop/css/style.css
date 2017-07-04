@@ -1,0 +1,11 @@
+* {
+    background: #13617E;
+    color: white;
+}
+
+.PetShop {
+    position: absolute;
+    left: 25%;
+    font-size: 18px;
+    font-family: Arial;
+}
