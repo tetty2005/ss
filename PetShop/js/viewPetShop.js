@@ -34,7 +34,7 @@ class PetShopView {
         });
 
         listsForOutput = '<h1>Cats: </h1>' + '<ul>' + catString + '</ul>' + '<br>' +
-                        '<h1>PriceyPets: </h1>' + '<ul>' + priceyPetsString + '</ul>' + '<br>' +
+                        '<h1>Pets with price greater than average: </h1>' + '<ul>' + priceyPetsString + '</ul>' + '<br>' +
                         '<h1>Fluffy Or White Pets: </h1>' + '<ul>' + fluffyOrWhiteString + '</ul>';
 
         return listsForOutput;
