@@ -1,33 +1,12 @@
 'use strict'
 
 function task2 (envelope1, envelope2) {
-    let result, error;
-    error = preValidate2(envelope1, envelope2);
+    let error = preValidate2(envelope1, envelope2);
 
-    if (!error) {
-        result = findSmallestEnvelope(envelope1, envelope2);
-    } else {
-        result = {status: 'failed', reason: error};
-    }
-
-    return result;
+    return (!error)? findSmallest(envelope1, envelope2): {status: 'failed', reason: error};
 }    
 
-function preValidate2 (envelope1, envelope2) {
-    let error = '';
-
-    if (typeof envelope1 !== 'object' || typeof envelope2 !== 'object') {
-        error = 'Enter two numbers and a symbol as a string';
-    } else if (typeof envelope1.a !== 'number' || typeof envelope1.b !== 'number' ) {
-        error = 'Enter two sides of first envelope as properties a and b';
-    } else if (typeof envelope2.c !== 'number' || typeof envelope2.d !== 'number') {
-        error = 'Enter two sides of second envelope as properties c and d';
-    }
-        
-    return error;
-}
-
-function findSmallestEnvelope (envelope1, envelope2) {
+function findSmallest (envelope1, envelope2) {
     let result = 0;
 
     setMinMaxSides(envelope1, envelope1.a, envelope1.b);
@@ -52,4 +31,18 @@ function findSmallestEnvelope (envelope1, envelope2) {
     }
 
    return result;
+}
+
+function preValidate2 (envelope1, envelope2) {
+    let error = '';
+
+    if (typeof envelope1 !== 'object' || typeof envelope2 !== 'object') {
+        error = 'Enter two numbers and a symbol as a string';
+    } else if (typeof envelope1.a !== 'number' || typeof envelope1.b !== 'number' ) {
+        error = 'Enter two sides of first envelope as properties a and b';
+    } else if (typeof envelope2.c !== 'number' || typeof envelope2.d !== 'number') {
+        error = 'Enter two sides of second envelope as properties c and d';
+    }
+        
+    return error;
 }
