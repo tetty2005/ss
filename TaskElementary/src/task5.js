@@ -1,92 +1,70 @@
 'use strict'
 
 function task5 (context) {
-    let result, error;
-    error = preValid(context);
+    let error = preValidate5(context);
 
-    if (!error) {
-        result = setLuckyTickets(context);
-    } else {
-        result = {status: 'failed', reason: error};
-    }
-
-    return result;
+    return (!error)? setLuckyTickets(context): {status: 'failed', reason: error};
 }
 
 function setLuckyTickets (context) {
-    let result = {};
-    result.luckyTickets1 = method1(context.min, context.max);
-    result.luckyTickets2 = method2(context.min, context.max);
+    let result = {},
+        luckyTickets1 = 0,
+        luckyTickets2 = 0,
+        min = Number(context.min),
+        max = Number(context.max);
 
-    if (result.luckyTickets1 > result.luckyTickets2) {
-        result.winner = 'method1';
-    } else if (result.luckyTickets2 > result.luckyTickets1) {
-        result.winner = 'method2';
+    for (let i = min; i <= max; i++) {
+        let ticket = String(i).split('');
+
+        for (let j = 0; j < ticket.length; j++) {
+            ticket[j] = Number(ticket[j]);
+        }
+
+        luckyTickets1 += method1(ticket);
+        luckyTickets2 += method2(ticket);
+    }
+
+    if (luckyTickets1 > luckyTickets2) {
+        result.winner = 'method1 (counts sums of first and second 3 numbers)';
+    } else if (luckyTickets2 > luckyTickets1) {
+        result.winner = 'method2 (counts sums of odd and even numbers)';
     } else {
         result.winner = 'Both methods bring the same amount of lucky tickets';
     }
 
+    result.luckyTickets1 = luckyTickets1;
+    result.luckyTickets2 = luckyTickets2;
+
     return result;
 }
 
-// The first method counts the number of tickets 
-// where the sum of the first three digits is the sum of the last three ones
-function method1 (min, max) {                           
-    let luckyTickets = 0;
+function method1 (ticket) {
+    while (ticket.length < 6) {
+        ticket.unshift(0);
+    }
 
-    for (let i = Number(min); i <= Number(max); i++) {
-        let ticketNumber = String(i).split('');
+    let sum1 = ticket[0] + ticket[1] + ticket[2];
+    let sum2 = ticket[3] + ticket[4] + ticket[5];
 
-        for (let j = 0; j < ticketNumber.length; j++) {
-            ticketNumber[j] = Number(ticketNumber[j]);
-        }
+    return (sum1 === sum2)? 1: 0;
+}
 
-        while (ticketNumber.length < 6) {
-            ticketNumber.unshift(0);
-        }
+function method2 (ticket) {
+    let sumEven = 0;
+    let sumOdd = 0;
 
-        let sum1 = ticketNumber[0] + ticketNumber[1] + ticketNumber[2];
-        let sum2 = ticketNumber[3] + ticketNumber[4] + ticketNumber[5];
-
-        if (sum1 === sum2) {
-            luckyTickets++;
+    for (let i = 0; i < ticket.length; i++) {
+        if (ticket[i] % 2 === 0) {
+            sumEven += ticket[i];
+        } else {
+            sumOdd += ticket[i];
         }
     }
 
-    return luckyTickets;
+    return (sumEven === sumOdd)? 1: 0;
 }
 
-// The second method counts the number of tickets 
-// where the sum of even numbers of the ticket is equal to the sum of odd
-function method2 (min, max) {
-    let luckyTickets = 0;
-
-    for (let i = Number(min); i <= Number(max); i++) {
-        let ticketNumber = String(i).split('');
-        let sumEven = 0;
-        let sumOdd = 0;
-
-        for (let j = 0; j < ticketNumber.length; j++) {
-            ticketNumber[j] = Number(ticketNumber[j]);
-        }
-
-        for (let k = 0; k < ticketNumber.length; k++) {
-            if (ticketNumber[k] % 2 === 0) {
-                sumEven += ticketNumber[k];
-            } else {
-                sumOdd += ticketNumber[k];
-            }
-        }
-
-        if (sumEven === sumOdd) {
-            luckyTickets++;
-        }
-    }
-
-    return luckyTickets;
-}
-
-function preValid (context) {
+function preValidate5 (context) {
     let error = '';
 
     if (!context || !context.min || !context.max) { 
