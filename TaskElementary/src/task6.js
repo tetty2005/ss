@@ -1,19 +1,12 @@
 'use strict'
 
 function task6 (rowLength, minSquare) {
-    let result, error;
-    error = validate(rowLength, minSquare);
+    let error = validate6(rowLength, minSquare);
 
-    if (!error) {
-        result = getNaturalNumbers(rowLength, minSquare);
-    } else {
-        result = {status: 'failed', reason: error};
-    }
-
-    return result;
+    return (!error)? getNaturalNumbers(rowLength, minSquare): {status: 'failed', reason: error};
 }
 
-function getNaturalNumbers (rowLength, minSquare) {    
+function getNaturalNumbers (rowLength, minSquare) {
         let numbers = [];
 
         next:
@@ -30,7 +23,7 @@ function getNaturalNumbers (rowLength, minSquare) {
         return numbers.join(',');
 }
 
-function validate (rowLength, minSquare) {
+function validate6 (rowLength, minSquare) {
     let error = '';
 
     if (typeof rowLength !== 'number' ||
