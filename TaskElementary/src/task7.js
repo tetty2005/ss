@@ -1,52 +1,46 @@
 'use strict'
 
 function task7 (context) {
-        let result;
     let error = preValidate(context);
 
-    if (!error) {
-        result = getArrayFibo(context);
-    } else {
-        result = {status: 'failed', reason: error};
-    }
-
-    return result;
+    return (!error)? getArrayFibo(context): {status: 'failed', reason: error};
 }
 
 function getArrayFibo (context) {
-
-    let fiboMax = [0, 1];
+    let fibo = [0, 1];
     let fiboPart = [];
 
     // 1. Если даны минимальное и максимальное значения:
-    if (typeof context.min === 'number' && typeof context.max === 'number' && 
+    if (typeof context.min === 'number' && 
+        typeof context.max === 'number' && 
         context.length === undefined) {
 
-        while (fiboMax[fiboMax.length - 1] <= context.max) {
-            fiboMax.push(fiboMax[fiboMax.length - 1] + fiboMax[fiboMax.length - 2]);
+        while (fibo[fibo.length - 1] <= context.max) {
+            fibo.push(fibo[fibo.length - 1] + fibo[fibo.length - 2]);
 
-            if (fiboMax[fiboMax.length - 1] >= context.min) {
-                fiboPart.push(fiboMax[fiboMax.length - 1]);
+            if (fibo[fibo.length - 1] >= context.min) {
+                fiboPart.push(fibo[fibo.length - 1]);
             }
         }
 
     // 2. Если дана длина чисел:
     } else if (typeof context.length === 'number' && 
-               context.min === undefined && context.max === undefined) {
+               context.min === undefined && 
+               context.max === undefined) {
 
-                let numberFibo = '0';
+        let numberFibo = '0';
 
-                for (let i = 2; numberFibo.length <= context.length; i++) {
-                    fiboMax.push(fiboMax[i - 1] + fiboMax[i - 2]); 
-                    numberFibo = String(fiboMax[i]);
+        for (let i = 2; numberFibo.length <= context.length; i++) {
+            fibo.push(fibo[i - 1] + fibo[i - 2]); 
+            numberFibo = String(fibo[i]);
 
-                    if (numberFibo.length === context.length) {
-                        fiboPart.push(fiboMax[i]);
-                    }
-                }
-        } 
+            if (numberFibo.length === context.length) {
+                fiboPart.push(fibo[i]);
+            }
+        }
+    } 
 
-        return fiboPart;
+    return fiboPart;
 }
 
 function preValidate (context) {
