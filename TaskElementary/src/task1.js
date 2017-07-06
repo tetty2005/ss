@@ -1,16 +1,9 @@
 'use strict'
 
 function task1 (width, height, symbol) {
-    let result, error;
-    error = preValidate1(width, height, symbol);
-
-    if (!error) {
-        result = drawBoard(width, height, symbol);
-    } else {
-        result = {status: 'failed', reason: error};
-    }
-
-    return result;
+    let error = preValidate1(width, height, symbol);
+    
+    return (!error)? drawBoard(width, height, symbol): {status: 'failed', reason: error};
 }
 
 function drawBoard (width, height, symbol) {
