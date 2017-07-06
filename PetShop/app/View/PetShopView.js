@@ -9,45 +9,22 @@ class PetShopView {
     }
 
     getListsForOutput () {
-        let listsForOutput,
+        let catList, priceyPets, fluffyOrWhite;
 
-            catList = this.petShop.findCats(),
-            catString = '',
+        catList = this.fillList('Cats:', this.petShop.findCats());
+        priceyPets = this.fillList('Pets with price greater than average:', this.petShop.findPriceyPets());
+        fluffyOrWhite = this.fillList('Fluffy Or White Pets:', this.petShop.findFluffyOrWhite());
 
-            priceyPetsList = this.petShop.findPriceyPets(),
-            priceyPetsString = '',
+        return catList + priceyPets + fluffyOrWhite;
+    }
 
-            fluffyOrWhiteList = this.petShop.findFluffyOrWhite(),
-            fluffyOrWhiteString = '';
+    fillList (listName, listContent) {
+        let list = `<h1>${listName}</h1>`;
 
-
-        catList.forEach((value) => {
-            catString += `<li>${value.name}, ${value.price}$</li>`;
+        listContent.forEach((value) => {
+            list += `<li>${value.name}, ${value.price}$</li>`;
         });
 
-        priceyPetsList.forEach((value) => {
-            priceyPetsString += `<li>${value.name}, ${value.price}$</li>`;
-        });
-
-        fluffyOrWhiteList.forEach((value) => {
-            fluffyOrWhiteString += `<li>${value.name}, ${value.price}$</li>`;
-        });
-
-        listsForOutput = `<h1>Cats: </h1> 
-                        <ul> 
-                            ${catString} 
-                        </ul>
-                        <br>
-                        <h1>Pets with price greater than average: </h1>
-                        <ul> 
-                            ${priceyPetsString}
-                        </ul>
-                        <br>
-                        <h1>Fluffy Or White Pets: </h1>
-                        <ul>
-                            ${fluffyOrWhiteString}
-                        </ul>`;
-
-        return listsForOutput;
+        return `<div>${list}</div>`;
     }
 }
