@@ -1,54 +1,32 @@
 'use strict'
 
 function task3 (arrayTriangles) {
-    let result;
-    let error = preValidate(arrayTriangles);
+    let error = preValidate3(arrayTriangles);
 
-    if (error === '') {
-        result = arrangeTriangles(arrayTriangles);
-    } else {
-        result = {status: 'failed', reason: error};
-    }
+    return (!error)? arrangeTriangles(arrayTriangles): {status: 'failed', reason: error};
+}
 
-    return result;
+function arrangeTriangles (arrayTriangles) {
+    let names = [];
+
+    arrayTriangles.forEach((triangle) => getSquare(triangle));
+    arrayTriangles.sort((a, b) => b.square - a.square);
+    arrayTriangles.forEach((triangle) => names.push(triangle.vertices));
+
+    return names;
 }
         
-let getSquare = function (triangle) {
-    let sides = [],
-        square, p;
+function getSquare (triangle) {
+    let square, p;
 
-    for (let prop in triangle) {
-        sides.push(triangle[prop]);
-    }
-
-    p = (sides[1] + sides[2] + sides[3])/2;
-    square = Math.sqrt(p*(p - sides[1])*(p - sides[2])*(p - sides[3]));
+    p = (triangle.a + triangle.b + triangle.c) / 2;
+    square = Math.sqrt(p*(p - triangle.a)*(p - triangle.b)*(p - triangle.c));
+    triangle.square = square;
 
     return square;
 };
 
-let getNames = function (triangle) {
-    return triangle.vertices;
-};
-
-let arranging = function (a, b) {
-    return b - a;
-};
-
-function arrangeTriangles (arrayTriangles) {
-    let squares = arrayTriangles.map(getSquare);
-    let names = arrayTriangles.map(getNames);
-    let squaresArranging = squares.slice().sort(arranging);
-    let namesArranging = [];
-
-    for (let i = 0; i < squaresArranging.length; i++) {
-        namesArranging.push(names[squares.indexOf(squaresArranging[i])]);
-    }
-            
-    return namesArranging;
-}
-
-function preValidate (arrayTriangles) {
+function preValidate3 (arrayTriangles) {
     let error = '';
 
     if (typeof arrayTriangles !== 'object') {
@@ -57,5 +35,6 @@ function preValidate (arrayTriangles) {
                typeof arrayTriangles[1] !== 'object') {
         error = 'Enter an array with two or more triangles';
     }
+    
     return error;
 }
