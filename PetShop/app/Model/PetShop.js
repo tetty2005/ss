@@ -13,13 +13,13 @@ class PetShop {
     }
 
     findFluffyOrWhite () {
-        let pets = this.pets.filter((pet) => {if (pet.color === 'white' || pet.fluffy === true) return pet});
+        let pets = this.pets.filter((pet) => {if (pet.areYouFluffyOrWhite()) return pet});
         return pets;
     }
 
     findPriceyPets () {
         let avarangePrice = this.findAvarangePrice();
-        let pets = this.pets.filter((pet) => {if (pet.price > avarangePrice) return pet});
+        let pets = this.pets.filter((pet) => {if (pet.isYourPriceBigger(avarangePrice)) return pet});
         return pets;
     }
 
