@@ -1,0 +1,21 @@
+.clock-calendar {
+    position: absolute;
+    width: 600px;
+    height: 100px;
+    top: 25%;
+    left: 25%;
+    background: #DB2A56;;
+    color: black;
+    text-align: center;
+    border: 2px solid black;
+    height: 2em;
+    line-height: 2em;
+    font-size: 100px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.blue {
+    background: #13617E;
+    color: white;
+}
