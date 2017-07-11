@@ -1,18 +1,23 @@
-class clockCalendar {
-    getDate (mode) {
-        let time = new Date(),
-            dd = this.formatTimeNumber(time.getDate()),
-            mm = this.formatTimeNumber(time.getMonth() + 1),
-            yyyy = time.getFullYear();
-
-        return mode === 'ua'? `${dd}.${mm}.${yyyy}`: `${mm}/${dd}/${yyyy.toString().slice(-2)}`;
-    }
-
-    getTime (mode) {
+class ClockCalendar {
+    getTime (timeFormat) {
         let time = new Date(),
             hh = this.formatTimeNumber(time.getHours()),
             mm = this.formatTimeNumber(time.getMinutes()),
             ss = this.formatTimeNumber(time.getSeconds());
 
-        return mode === 'short'? `${hh}:${mm}`: `${hh}:${mm}:${ss}`;
+        return timeFormat === 'short'? `${hh}:${mm}`: `${hh}:${mm}:${ss}`;
     }
+
+    getDate (dateFormat) {
+        let time = new Date(),
+            dd = this.formatTimeNumber(time.getDate()),
+            mm = this.formatTimeNumber(time.getMonth() + 1),
+            yyyy = time.getFullYear();
+
+        return dateFormat === 'ua'? `${dd}.${mm}.${yyyy}`: `${mm}/${dd}/${yyyy.toString().slice(-2)}`;
+    }
+
+    formatTimeNumber(number) {
+        return number >= 10? number: '0' + number;
+    }
+}
