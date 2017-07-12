@@ -5,6 +5,11 @@ class ClockCalendar extends HTMLElement {
         super();
     }
 
+    attachedCallback () {
+        this.start();
+        this.render();
+    }
+
     start () {
         this.element = this.createShadowRoot();
         this.dateWidget = new DateWidget();
