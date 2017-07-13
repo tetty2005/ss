@@ -1,3 +1,5 @@
+'use strict'
+
 class PetShop {
     constructor () {
         this.pets = [];

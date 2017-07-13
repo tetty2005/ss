@@ -1,3 +1,5 @@
+'use strict'
+
 class Cat extends Pet {
 	constructor (color, price, name, isFluffy) {
 		super(color, price);
