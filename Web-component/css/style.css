@@ -1,3 +1,6 @@
+* {
+    background: black;
+}
 clock-calendar-widget {
     display: block;
     width: 600px;
